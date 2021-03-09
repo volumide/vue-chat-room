@@ -4,37 +4,30 @@
     <form class="w-2/5 mx-auto px-5 my-10 py-5 rounded-md shadow">
       <div class="my-4">
         <label for="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          class="input"
-          required
-        />
+        <input type="email" id="email" class="input" v-model="data.email" required />
       </div>
       <div class="my-4">
         <label for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          class="input"
-          required
-        />
+        <input type="password" id="password" class="input" v-model="data.password" required />
       </div>
       <div class="my-4">
-        <button type="submit" class="button">
-          Sign in
-        </button>
+        <button type="submit" class="button">Sign in</button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
+import { onBeforeMount, ref } from "vue";
 import * as all from "../firebaseDb";
 export default {
   name: "Sign In",
-  methods: {
-    loginUser() {
+  setup() {
+    const data = ref({
+      email: "",
+      password: ""
+    })
+    const loginUser = () => {
       all.default.auth.onAuthStateChanged((user) => {
         if (user) {
           if (this.code) {
@@ -47,10 +40,16 @@ export default {
           }
         }
       });
-    },
+    };
+    const created = onBeforeMount(() => console.log("created"));
+    return {
+      // model
+      data,
+      // callbacks
+      loginUser,
+      created,
+    };
   },
-
-  created() {},
 };
 </script>
 
