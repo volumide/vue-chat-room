@@ -1,6 +1,6 @@
 <template >
   <div>
-    <h1 class="text-center font-bold text-5xl d block">Login</h1>
+    <h1 class="text-center font-bold text-5xl d block">Sign up</h1>
     <form action="" class="w-2/5 mx-auto px-5 my-10 py-5 rounded-md shadow">
       <div class="my-4">
         <label for="name">Full Name</label>
