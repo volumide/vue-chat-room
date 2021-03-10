@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { onBeforeMount, ref } from "vue";
+import {ref} from "vue";
 import * as all from "../firebaseDb";
 export default {
   name: "Sign In",
@@ -41,13 +41,13 @@ export default {
         }
       });
     };
-    const created = onBeforeMount(() => console.log("created"));
+    // const created = onBeforeMount(() => console.log("created"));
     return {
       // model
       data,
       // callbacks
       loginUser,
-      created,
+      // created,
     };
   },
 };
