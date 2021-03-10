@@ -1,7 +1,7 @@
 <template >
-  <div>
+  <div class="mt-9">
     <h1 class="text-center font-bold text-5xl d block">Sign in</h1>
-    <form class="w-2/5 mx-auto px-5 my-10 py-5 rounded-md shadow">
+    <form class="w-full sm:w-5/12 mx-auto px-5 my-10 py-5 rounded-md shadow">
       <div class="my-4">
         <label for="email">Email</label>
         <input type="email" id="email" class="input" v-model="data.email" required />

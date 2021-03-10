@@ -1,7 +1,7 @@
 <template >
-  <div>
+  <div mt-9>
     <h1 class="text-center font-bold text-5xl d block">Sign up</h1>
-    <form action="" class="w-11/12 sm:w-2/5 mx-auto px-5 my-10 py-5 rounded-md shadow" @submit="test">
+    <form action="" class=" w-full sm:w-5/12 mx-auto px-5 my-10 py-5 rounded-md shadow" @submit="test">
       <div class="my-4">
         <label for="name">Full Name</label>
         <input
@@ -66,7 +66,7 @@ export default {
       data.value.password = ""
       data.value.confirmPassword = ""
     }
-
+    
     const registerUser = () => {
       all.default.auth
         .createUserWithEmailAndPassword(data.value.email, data.value.password)
