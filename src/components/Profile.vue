@@ -1,5 +1,5 @@
 <template >
-  <div class="flex flex-col w-64   px-10 pb-8 pt-28 h-screen border-r bg-white dark:bg-gray-800 dark:border-gray-600">
+  <div class="flex flex-col w-64   px-10 pb-8 pt-28 h-screen bg-white dark:bg-gray-800 dark:border-gray-600">
         <h2 class="text-3xl font-semibold text-gray-800 dark:text-white">Name</h2>
         
         <div class="flex flex-col justify-between flex-1 mt-6">
