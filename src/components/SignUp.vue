@@ -1,7 +1,7 @@
 <template >
-  <div mt-9>
+  <div class="pt-24">
     <h1 class="text-center font-bold text-5xl d block">Sign up</h1>
-    <form action="" class=" w-full sm:w-5/12 mx-auto px-5 my-10 py-5 rounded-md shadow" @submit="test">
+    <form action="" class=" w-full sm:w-5/12 mx-auto px-5 my-10 py-5 rounded-md shadow" @submit="registerUser">
       <div class="my-4">
         <label for="name">Full Name</label>
         <input
@@ -29,7 +29,7 @@
         <input type="password" id="cpassword" class="input" v-model="data.confirmPassword" required />
       </div>
       <div class="my-4">
-        <button type="submit" class="button">Sign up</button>
+        <button type="submit" class="button font-bold text-white" :disabled = 'loading'>Sign up</button>
       </div>
       <p class=" py-4 bg-yellow-600 px-4 text-white font-bold rounded-md" v-if="message">
         {{message}}
@@ -51,6 +51,7 @@ export default {
       password: "",
       confirmPassword: ""
     });
+    const loading = ref(false)
     const message = ref('')
     const test = (e)=>{
       e.preventDefault();
@@ -59,7 +60,6 @@ export default {
         return
       }
       message.value = `${data.value.name} is registered successsfuly; login to finish your registeration and confirm your email`
-
       data.value.name = ""
       data.value.email = ""
       data.value.phone = ""
@@ -67,17 +67,34 @@ export default {
       data.value.confirmPassword = ""
     }
     
-    const registerUser = () => {
+    const registerUser = (e) => {
+      e.preventDefault()
+      loading.value = true
       all.default.auth
         .createUserWithEmailAndPassword(data.value.email, data.value.password)
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
+        .then((res) => {
+          if (res) {
+            all.default.users.doc(res.user.uid).set({
+              name : data.value.name,
+              phone : data.value.phone,
+              email : data.value.email
+            })
+          }
+          console.log(res, data)
+          loading.value = false
+          message.value = "registeration successfull"
+        })
+        .catch((err) => {
+          // console.log(err)
+          message.value = err.message
+        });
     };
 
     return {
       // models
       data,
       message,
+      loading,
       // calbacks
       test,
       registerUser,

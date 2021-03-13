@@ -1,9 +1,9 @@
 <template>
-  <section class="bg-white dark:bg-gray-800">
+  <section class="bg-white pt-24">
     <div
-      class="flex py-2 flex-col mt-8 space-y-3 px-10 align-middle sm:align-middle sm:space-y-0 sm:flex-row sm:justify-center sm:space-x-4 fixed bottom-0 w-full bg-white"
+      class="flex py-2 px-10 align-middle sm:align-middle sm:space-y-0 sm:flex-row sm:justify-center space-x-4 fixed bottom-0 w-full bg-white"
     >
-      <div class="sm:w-3/6">
+      <div class=" w-4/5 sm:w-3/6">
         <textarea
           class="block px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none  resize-none w-full"
           placeholder="Message here..."
@@ -12,7 +12,7 @@
       </div>
 
       <div>
-        <button
+        <button 
           class="button"
           @click="sendChat"
         >
