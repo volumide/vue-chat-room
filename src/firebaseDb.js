@@ -19,11 +19,13 @@ const phone = firebase.default.auth
 
 const users = db.collection('users')
 const chatRoom = db.collection('chatRoom')
+const chats = db.collection('chats')
 
 export default {
     db,
     auth,
     users,
     phone,
-    chatRoom
+    chatRoom,
+    chats
 }

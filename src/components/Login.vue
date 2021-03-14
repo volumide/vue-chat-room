@@ -28,38 +28,48 @@
       <div class="my-4">
         <button type="submit" class="button">Sign in</button>
       </div>
+      <p
+        class=" py-4 bg-yellow-600 px-4 text-white font-bold rounded-md"
+        v-if="message"
+      >
+        {{ message }}
+      </p>
     </form>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
+import { onBeforeMount, ref } from "vue";
 import router from '@/router'
 import * as all from "../firebaseDb";
+import currentUser from '../states/getUers'
+
 export default {
   name: "Sign In",
   setup() {
+    const message = ref('')
+    const {user, profile} = currentUser()
     const data = ref({
       email: "",
       password: "",
     });
+    const mount = onBeforeMount(()=>{
+      profile()
+      console.log(user);
+      if (!user) router.push("/")
+    })
     const loginUser = (e) => {
       e.preventDefault();
       all.default.auth
         .signInWithEmailAndPassword(data.value.email, data.value.password)
-        .then((cred) => {
-          console.log(cred.user.uid);
+        .then(() => {
           router.push("/profile")
         })
-        .catch((err) => console.log(err));
+        .catch((err) =>{
+          message.value = err.message;
+        });
     };
-    return {
-      // model
-      data,
-      // callbacks
-      loginUser,
-      // created,
-    };
+    return {data,message,loginUser,mount};
   },
 };
 </script>

@@ -1,17 +1,17 @@
-<template >
+<template>
   <div
     class="flex flex-col w-96 px-10 pb-8 pt-28 h-screen bg-white shadow-md"
+    v-if="user"
   >
-    <h2 class="text-3xl font-semibold text-gray-800 dark:text-white">{{user.email}}</h2>
+    <h2 class="text-3xl font-semibold text-gray-800 dark:text-white">
+      {{ user.email }}
+    </h2>
     <div class="flex flex-col justify-between flex-1 mt-6">
       <!-- <div>
         <a href=""></a>
       </div> -->
-      <div class="" v-if="user">
-        <a
-          class="profile-link text-gray-700 bg-gray-300 rounded-md"
-          href="#"
-        >
+      <div class="">
+        <a class="profile-link text-gray-700 bg-gray-300 rounded-md" href="#">
           <svg
             class="w-5 h-5"
             viewBox="0 0 24 24"
@@ -29,10 +29,7 @@
           <span class="mx-4 font-medium hidden sm:block">Edit</span>
         </a>
 
-        <a
-          class="profile-link"
-          href="#"
-        >
+        <a class="profile-link" href="#">
           <svg
             class="w-5 h-5"
             viewBox="0 0 24 24"
@@ -57,10 +54,7 @@
           <span class="mx-4 font-medium hidden sm:block">Social</span>
         </a>
 
-        <a
-          class="profile-link"
-          href="#"
-        >
+        <a class="profile-link" href="#">
           <svg
             class="w-5 h-5"
             viewBox="0 0 24 24"
@@ -124,19 +118,20 @@
 </template>
 
 <script>
-import { onBeforeMount } from "vue";
-import currentUser from '../states/getUers'
+import { onMounted } from "vue";
+import currentUser from "../states/getUers";
+import router from "@/router";
 export default {
   name: "Profile",
   setup() {
-    const {user, profile} = currentUser()
-    const mount = onBeforeMount(() => {
-      profile()
-    })
-    return { user, mount};
-  }
-}
+    const { user, profile, id } = currentUser();
+    const mount = onMounted(() => {
+      profile();
+      if (!id.value) router.push("/signin");
+    });
+    return { user, mount };
+  },
+};
 </script>
 
-<style lang="">
-</style>
+<style lang=""></style>
