@@ -61,13 +61,14 @@ export default {
     });
 
     // query the database in the chat room database
-    const getAllTable = () =>
+    const getAllTable = () =>{
       chatRoom.chatRoom.get().then((snapShot) => {
         snapShot.forEach((doc) => {
           console.log(doc.id);
         });
       });
-
+    }
+    
     // create a chat room
     const createChatRoom = (e) => {
       e.preventDefault();
@@ -82,6 +83,7 @@ export default {
       });
     };
 
+    // room chats
     const sendChat = (e) => {
       e.preventDefault();
       chatRoom.chats.add({
@@ -92,7 +94,7 @@ export default {
     };
 
     // get chat from chat room
-    const getChat = () =>
+    const getChat = () =>{
       chatRoom.chatRoom
         .doc("nigeria")
         .get()
@@ -101,6 +103,7 @@ export default {
           else console.log("no such document");
         })
         .catch((err) => console.log(err));
+    }
 
     return { message, title, sendChat, getChat, getAllTable, createChatRoom };
   },
